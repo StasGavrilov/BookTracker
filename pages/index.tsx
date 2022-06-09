@@ -1,8 +1,9 @@
 import type { NextPage } from 'next'
+import AllBooks from './allbooks'
 
 const Home: NextPage = () => {
   return (
-    <h1>hello.</h1>
+    <AllBooks />
   )
 }
 
