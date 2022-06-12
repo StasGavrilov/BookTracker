@@ -3,8 +3,10 @@ import React from 'react'
 const Favorites = () => {
     return (
         <>
-            <div className="container">
-                <h1>Favorites!</h1>
+            <h1>Favorites!</h1>
+
+            <div>
+                You have no favorites yet.
             </div>
         </>
     )
