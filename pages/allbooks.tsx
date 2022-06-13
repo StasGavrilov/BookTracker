@@ -10,9 +10,7 @@ const AllBooks = () => {
 
     return (
         <>
-            <div className="container">
-                <h1>All Books!</h1>
-            </div>
+            <h1>All Books!</h1>
         </>
     )
 }
