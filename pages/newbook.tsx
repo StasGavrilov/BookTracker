@@ -3,33 +3,28 @@ import FormCard from '../src/components/FormCard'
 import classes from '../src/styles/newbook.module.css'
 
 const NewBook = () => {
-    const [newBooks, setNewBooks] = useState([])
-    const titleInputRef = useRef()
-    const imageInputRef = useRef()
-    const pagesInputRef = useRef()
-    const chaptersInputRef = useRef()
-    const descriptionInputRef = useRef()
+    const [newBooks, setNewBooks] = useState<object[]>([])
+    const titleInputRef = useRef<HTMLInputElement | null>(null)
+    const imageInputRef = useRef<HTMLInputElement | null>(null)
+    const pagesInputRef = useRef<HTMLInputElement | null>(null)
+    const chaptersInputRef = useRef<HTMLInputElement | null>(null)
+    const descriptionInputRef = useRef<HTMLTextAreaElement | null>(null)
 
     useEffect(() => {
-        const todoJSON = localStorage.getItem('books')
-        if (todoJSON != null) {
-            return setNewBooks(JSON.parse(todoJSON))
+        const bookJSON = localStorage.getItem('books')
+        if (bookJSON != null) {
+            return setNewBooks(JSON.parse(bookJSON))
         }
     }, [])
-
-    useEffect(() => {
-        localStorage.setItem('books', JSON.stringify(newBooks))
-    }, [newBooks])
-
 
     function submitHandler(event: any) {
         event.preventDefault()
 
-        const titleInput: string = titleInputRef.current.value
-        const imageInput: string = imageInputRef.current.value
-        const pagesInput: number = pagesInputRef.current.value
-        const chaptersInput: number = chaptersInputRef.current.value
-        const descriptionInput: string = descriptionInputRef.current.value
+        const titleInput: string | undefined = titleInputRef?.current?.value
+        const imageInput: string | undefined = imageInputRef?.current?.value
+        const pagesInput: string | undefined = pagesInputRef?.current?.value
+        const chaptersInput: string | undefined = chaptersInputRef?.current?.value
+        const descriptionInput: string | undefined = descriptionInputRef?.current?.value
 
         const newBookData = {
             title: titleInput,
@@ -40,7 +35,9 @@ const NewBook = () => {
         }
 
         setNewBooks([...newBooks, newBookData])
+        localStorage.setItem('books', JSON.stringify(newBooks))
     }
+    console.log(newBooks)
 
     return (
         <>
